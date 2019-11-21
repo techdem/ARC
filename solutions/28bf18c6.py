@@ -32,15 +32,36 @@ def task_demonstration(json_input):
         for row in l['output']:
             print(row)
 
-def test_solve(json_input):
+def test_solve(result, json_input):
     """
     test output of solve()
     """
-    return json_input['test'][0]['output']
+    return result == json_input['test'][0]['output']
 
-def solve(testing_input):
+def solve(t):
+    """
+    receive the input part of the testing data and
+    determine the output
+    """
     
-    return [[0, 0, 3, 0, 0, 3],[3, 3, 3, 3, 3, 3],[3, 0, 0, 3, 0, 0]]
+    # find the 3x3 grid with the highest sum
+    c = 0
+    m = 0
+    g = [[]]
+    
+    for i in range(len(t)-2):
+        for j in range(len(t)-2):
+            c = t[i][j] + t[i][j+1] + t[i][j+2] +\
+                t[i+1][j] + t[i+1][j+1] + t[i+1][j+2] +\
+                t[i+2][j] + t[i+2][j+1] + t[i+2][j+2]
+            
+            if c > m:
+                m = c
+                g = [[t[i][j],t[i][j+1],t[i][j+2],t[i][j],t[i][j+1],t[i][j+2]],
+                     [t[i+1][j],t[i+1][j+1],t[i+1][j+2],t[i+1][j],t[i+1][j+1],t[i+1][j+2]],
+                     [t[i+2][j],t[i+2][j+1],t[i+2][j+2],t[i+2][j],t[i+2][j+1],t[i+2][j+2]]]
+            
+    return g
 
 if __name__ == "__main__":
     # open the file containing the data
@@ -56,5 +77,5 @@ if __name__ == "__main__":
     result = solve(json_input['test'][0]['input'])
     
     # compare the result to that of test_solve()
-    print("The result of solve() is: {0}".format(result == test_solve(json_input)))
+    print("\nThe result of solve() is: {0}".format(test_solve(result, json_input)))
     
