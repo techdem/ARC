@@ -2,11 +2,12 @@
 """
 Created on Wed Nov 20 09:29:21 2019
 
-@author: chiribest
+@authors: Laura Gonzalez, Praneeth Jakkaraju, Tudor Chiribes
 
 28bf18c6
 """
 
+import sys
 import json
 
 def task_demonstration(json_input):
@@ -64,12 +65,18 @@ def solve(t):
     return g
 
 if __name__ == "__main__":
+    # read path to JSON file from command line arguments
+    file_path = str(sys.argv[0])
+    
+    # open the file containing the data
+    #input_file = open(file_path)
+    
     # open the file containing the data
     input_file = open('../data/training/28bf18c6.json')
-        
+    
     # load the input as a JSON array
     json_input = json.load(input_file)
-
+    
     # visualise the task demonstration
     task_demonstration(json_input)
     
