@@ -10,34 +10,34 @@ Created on Wed Nov 20 09:29:21 2019
 import sys
 import json
 
-def task_demonstration(json_input):
+def print_solution(json_input):
     """
-    print the input-output pairs to the console
+    print the training grids and compute the solution for each one
     """
     
-    print("\ntraining:\n")
     for l in json_input['train']:
-        print("input:")
         for row in l['input']:
             print(row)
-        print("output:")
-        for row in l['output']:
-            print(row)
+        print("")
+        solution = solve(l['input'])
+        if solution == l['output']:
+            for row in solution:
+                print(row)
+        else:
+            print("Solution is wrong!")
+        print("")
             
-    print("\ntesting:\n")
     for l in json_input['test']:
-        print("input:")
         for row in l['input']:
             print(row)
-        print("output:")
-        for row in l['output']:
-            print(row)
-
-def test_solve(result, json_input):
-    """
-    test output of solve()
-    """
-    return result == json_input['test'][0]['output']
+        print("")
+        solution = solve(l['input'])
+        if solution == l['output']:
+            for row in solution:
+                print(row)
+        else:
+            print("Solution is wrong!")
+        print("")
 
 def solve(t):
     """
@@ -66,23 +66,16 @@ def solve(t):
 
 if __name__ == "__main__":
     # read path to JSON file from command line arguments
-    file_path = str(sys.argv[0])
+    file_path = str(sys.argv[1])
     
     # open the file containing the data
-    #input_file = open(file_path)
+    input_file = open(file_path)
     
-    # open the file containing the data
-    input_file = open('../data/training/28bf18c6.json')
+    # relative path for development
+    #input_file = open('../data/training/28bf18c6.json')
     
     # load the input as a JSON array
     json_input = json.load(input_file)
     
     # visualise the task demonstration
-    task_demonstration(json_input)
-    
-    # pass only the testing input to solve() and store the result
-    result = solve(json_input['test'][0]['input'])
-    
-    # compare the result to that of test_solve()
-    print("\nThe result of solve() is: {0}".format(test_solve(result, json_input)))
-    
+    print_solution(json_input)
