@@ -48,7 +48,7 @@ def solve(input):
     for j,lst_element in enumerate(input_lst):
       if (lst_element != max_occured_code):
         input_lst[j] = 5
-  return input_array
+  return input_array.tolist()
 
 
 if __name__ == "__main__":
