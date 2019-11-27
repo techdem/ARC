@@ -9,40 +9,7 @@ Created on Wed Nov 20 09:29:21 2019
 
 import sys
 import json
-
-def print_solution(json_input):
-    """
-    print the training grids and compute the solution for each one
-    """
-    
-    # iterate over the contents of 'train'
-    for l in json_input['train']:
-        # each list represent a row of the grid
-        for row in l['input']:
-            print(row)
-        print("")
-        # compute the output using the solve method
-        solution = solve(l['input'])
-        # if the result of solve() matches the original output, print
-        if solution == l['output']:
-            for row in solution:
-                print(row)
-        else:
-            print("Solution is wrong!")
-        print("")
-    
-    # repeat above process for the contents of 'test'
-    for l in json_input['test']:
-        for row in l['input']:
-            print(row)
-        print("")
-        solution = solve(l['input'])
-        if solution == l['output']:
-            for row in solution:
-                print(row)
-        else:
-            print("Solution is wrong!")
-        print("")
+from print_solution import print_solution
 
 def solve(t):
     """
@@ -83,4 +50,4 @@ if __name__ == "__main__":
     json_input = json.load(input_file)
     
     # visualise the task demonstration
-    print_solution(json_input)
+    print_solution(json_input, solve)
