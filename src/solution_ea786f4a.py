@@ -4,38 +4,11 @@ Created on Sun Nov 24 22:35:30 2019
 
 @author: Laura Gonzalez, Praneeth Jakkaraju, Tudor Chiribes
 """
+
 import numpy as np
 import json
 import sys
-
-def print_solution(json_input):
-    """
-    print the training grids and compute the solution for each one
-    """
-
-    for l in json_input['train']:
-        for row in l['input']:
-            print(row)
-        print("")
-        solution = solve(l['input'])
-        if solution == l['output']:
-            for row in solution:
-                print(row)
-        else:
-            print("Solution is wrong!")
-        print("")
-
-    for l in json_input['test']:
-        for row in l['input']:
-            print(row)
-        print("")
-        solution = solve(l['input'])
-        if solution == l['output']:
-            for row in solution:
-                print(row)
-        else:
-            print("Solution is wrong!")
-        print("")
+from print_solution import print_solution
 
 def solve(t):
     input_array = np.array(t) # converting the input to array 
@@ -60,4 +33,4 @@ if __name__ == "__main__":
     json_input = json.load(input_file)
 
     # visualise the task demonstration
-    print_solution(json_input)
+    print_solution(json_input, solve)
