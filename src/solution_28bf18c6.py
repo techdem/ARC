@@ -17,24 +17,28 @@ def solve(t):
     determine the output
     """
     
-    # find the 3x3 grid with the highest sum
-    c = 0
-    m = 0
-    g = [[]]
+    # declare and initialise variables
+    current = 0
+    highest = 0
+    grid = [[]]
     
+    # iterate over the input and find the 3x3 grid with the highest sum
     for i in range(len(t)-2):
         for j in range(len(t)-2):
-            c = t[i][j] + t[i][j+1] + t[i][j+2] +\
+            # compute the total sum of the grid starting from current element
+            current = t[i][j] + t[i][j+1] + t[i][j+2] +\
                 t[i+1][j] + t[i+1][j+1] + t[i+1][j+2] +\
                 t[i+2][j] + t[i+2][j+1] + t[i+2][j+2]
             
-            if c > m:
-                m = c
-                g = [[t[i][j],t[i][j+1],t[i][j+2],t[i][j],t[i][j+1],t[i][j+2]],
+            if current > highest:
+                highest = current
+                
+                # generate the 3x6 output grid to match the identified pattern
+                grid = [[t[i][j],t[i][j+1],t[i][j+2],t[i][j],t[i][j+1],t[i][j+2]],
                      [t[i+1][j],t[i+1][j+1],t[i+1][j+2],t[i+1][j],t[i+1][j+1],t[i+1][j+2]],
                      [t[i+2][j],t[i+2][j+1],t[i+2][j+2],t[i+2][j],t[i+2][j+1],t[i+2][j+2]]]
             
-    return g
+    return grid
 
 if __name__ == "__main__":
     # read path to JSON file from command line arguments
