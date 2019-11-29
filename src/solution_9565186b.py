@@ -10,6 +10,9 @@ import json
 from print_solution import print_solution
 
 def solve(input):
+
+    #color code
+    grey_color = 5
     # convert the input to numpy array
     input_array = np.array(input)
     # get the count of cells with color code
@@ -24,7 +27,7 @@ def solve(input):
             """check if each cell is not colored the selected color code
             and replace it with color code 5"""
             if (lst_element != max_occured_code):
-                input_lst[j] = 5
+                input_lst[j] = grey_color
     return input_array.tolist()
 
 if __name__ == "__main__":
