@@ -20,4 +20,4 @@ Example output:
 
 ![example output](src/exampleOutput.PNG)
 
-The grids are printed out row-by-row with a space between input-output pairs. Where the computed solution grid does not match the one from the training/testing pairs, a 'Solution is wrong!' message is printed instead.
+The grids are printed out row-by-row with unpacked lists of numbers. Where the computed solution grid does not match the one from the training/testing pairs, a 'Solution is wrong!' message is printed instead.
